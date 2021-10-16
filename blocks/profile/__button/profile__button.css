@@ -1,0 +1,19 @@
+.profile__button{
+    width: 151px;
+    height: 51px;
+    margin: auto 0 auto auto;
+    background-image: url(../../../images/btn_add.svg);
+    background-repeat: no-repeat;
+    background-color: #000;
+    background-position:center;
+    border: 1px solid #fff;
+    padding: 0;
+}
+
+@media screen and (max-width: 750px) {
+    .profile__button{
+        width: 90%;
+        margin: 36px auto 0;
+        background-position: center;
+    }
+}
