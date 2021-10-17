@@ -10,6 +10,10 @@
     margin-top: 16px;
 }
 
+.profile__info-button:hover {
+    opacity: 0.6;
+  }
+
 @media screen and (max-width: 750px) {
     .profile__info-button{
         width: 18px;

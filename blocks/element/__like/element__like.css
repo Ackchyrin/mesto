@@ -6,3 +6,7 @@
     margin: auto 30px auto auto;
     border: none;
 }
+
+.element__like:hover {
+    opacity: 0.6;
+  }
