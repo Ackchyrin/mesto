@@ -57,14 +57,3 @@ function saveNewInformation (event) {
 
   savePopupChanges();
 };
-
-/*Постановка лайка на фотокарточку */
-
-const elementLike = document.querySelector('.element__like');
-
-function pushLike() {
-  elementLike.classList.toggle('element__like-pressed');
-};
-
-elementLike.addEventListener('click', pushLike);
-
