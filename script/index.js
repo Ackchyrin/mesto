@@ -2,13 +2,23 @@
 const popupElementProfile = document.querySelector('.popup');
 const popupCloseButtonElement = popupElementProfile.querySelector('.popup__close');
 const popupOpenButtonElement = document.querySelector('.profile__info-button');
+const profileName = document.querySelector('.profile__info-name');
+const profileEmployment = document.querySelector('.profile__info-about');
+const nameInput = popupElementProfile.querySelector('.popup__input-name');
+const employmentInput = popupElementProfile.querySelector('.popup__input-about');
+const buttonSavePopupChanges = popupElementProfile.querySelector('.popup__save')
 
-const openPopup = function () {
-  popupElementProfile.classList.add('popup__open');
+function valuePopup () {
+  nameInput.value = profileName.textContent;
+  employmentInput.value = profileEmployment.textContent;
+
+  popupElementProfile.classList.add('popup-open');
 };
 
+popupOpenButtonElement.addEventListener('click',valuePopup);
+
 const closePopup = function () {
-  popupElementProfile.classList.remove('popup__open');
+  popupElementProfile.classList.remove('popup-open');
 };
 
 popupCloseButtonElement.addEventListener('click', closePopup);
@@ -23,29 +33,7 @@ const closePopupByClickOverlay = function (event) {
 
 popupElementProfile.addEventListener('click', closePopupByClickOverlay);
 
-/* Изменение данных профиля в popup */
-
-const profileName = document.querySelector('.profile__info-name');
-const profileEmployment = document.querySelector('.profile__info-about');
-const nameInput = popupElementProfile.querySelector('.popup__name');
-const employmentInput = popupElementProfile.querySelector('.popup__about');
-
-function popupValue () {
-  nameInput.value = profileName.textContent;
-  employmentInput.value = profileEmployment.textContent;
-
-  openPopup();
-};
-
-popupOpenButtonElement.addEventListener('click', popupValue);
-
 /* Сохранение изменений в профиле */
-
-const buttonSavePopupChanges = popupElementProfile.querySelector('.popup__save')
-
-const savePopupChanges = function() {
-  popupElementProfile.classList.remove('popup__open');
-};
 
 buttonSavePopupChanges.addEventListener('click',saveNewInformation);
 
@@ -55,5 +43,5 @@ function saveNewInformation (event) {
   profileName.textContent = nameInput.value;
   profileEmployment.textContent = employmentInput.value;
 
-  savePopupChanges();
+  closePopup();
 };

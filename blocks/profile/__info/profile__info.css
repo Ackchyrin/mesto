@@ -14,9 +14,22 @@
 
 @media screen and (max-width: 750px) {
     .profile__info{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: space-between;
         text-align: center;
         grid-column-gap: 10px;
         grid-row-gap: 14px;
-        margin: 26px 0;
+        margin: 26px 0 0;
+        height: 120px;
+        overflow: inherit;
     }
 }
+
+@media screen and (max-width: 400px) {
+    .profile__info{
+        height: 80px;
+    }
+}
+

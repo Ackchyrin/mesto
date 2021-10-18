@@ -9,8 +9,16 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .footer{
+        margin: 48px 0 0 19px;
+        padding-bottom: 36px;
+    }
+}
+
 @media screen and (max-width: 320px) {
     .footer{
-        margin-left: 19px;
+        margin: 48px 0 0 19px;
+        padding-bottom: 36px;
     }
 }

@@ -5,6 +5,7 @@
     background-repeat: no-repeat;
     margin: auto 30px auto auto;
     border: none;
+    background-color: transparent;
 }
 
 .element__like:hover {
