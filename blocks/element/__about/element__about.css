@@ -1,9 +1,0 @@
-.element__about{
-    display: flex;
-    background-color: #fff;
-    height: 79px;
-    border-radius: 0 0 15px 15px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
