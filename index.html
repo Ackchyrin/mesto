@@ -31,78 +31,12 @@
           <button type="button" class="profile__button"></button>
         </section>
         <section class="elements">
-          <div class="element">
-            <img
-              src="./images/elements/13-tajny-bajkala.jpg"
-              alt="Изображение озера Байкал"
-              class="element__image"
-            />
-            <div class="element__about">
-              <p class="element__description">озеро Байкал</p>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elements/13-tajny-bajkala.jpg"
-              alt="Изображение озера Байкал"
-              class="element__image"
-            />
-            <div class="element__about">
-              <p class="element__description">озеро Байкал</p>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elements/13-tajny-bajkala.jpg"
-              alt="Изображение озера Байкал"
-              class="element__image"
-            />
-            <div class="element__about">
-              <p class="element__description">озеро Байкал</p>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elements/13-tajny-bajkala.jpg"
-              alt="Изображение озера Байкал"
-              class="element__image"
-            />
-            <div class="element__about">
-              <p class="element__description">озеро Байкал</p>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elements/13-tajny-bajkala.jpg"
-              alt="Изображение озера Байкал"
-              class="element__image"
-            />
-            <div class="element__about">
-              <p class="element__description">озеро Байкал</p>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
-          <div class="element">
-            <img
-              src="./images/elements/13-tajny-bajkala.jpg"
-              alt="Изображение элемента"
-              class="element__image"
-            />
-            <div class="element__about">
-              <p class="element__description">озеро Байкал</p>
-              <button type="button" class="element__like"></button>
-            </div>
-          </div>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2021. Mesto Russia</p>
       </footer>
-      <article class="popup">
+      <article class="popup popup_edit-profile popup_transition">
         <div class="popup__container">
           <button type="button" class="popup__close"></button>
           <p class="popup__info">Редактировать профиль</p>
@@ -113,7 +47,37 @@
             </form>
         </div>
       </article>
+      <article class="popup popup_add-image popup_transition">
+        <div class="popup__container">
+        <button type="button" class="popup__close popup__close-add"></button>
+        <p class="popup__info">Новое место</p>
+        <form class="popup__form" name="popupimage" method="GET" >
+          <input name="title_popup" id="title" type="text" class="popup__input popup__input_title" value="" placeholder="Название"/>
+          <input name="link_popup" id="link" type="text" class="popup__input popup__input_link" value="" placeholder="Ссылка на картинку"/>
+          <button type="submit" class="popup_creat-card">Сохранить</button>
+        </div>
+      </article>
+      <div class="popup popup_open-image popup_transition">
+        <figure class="open-image">
+            <button class="popup__close popup__close-button_open-image" type="button"></button>
+            <img class="open-image__picture" src="/" alt="/">
+            <figcaption class="open-image__caption"></figcaption>
+        </figure>
     </div>
+    <template id="card-template">
+      <div class="element">
+        <button type="button" class="element__delete"></button>
+        <img
+          src="/"
+          alt="/"
+          class="element__image" popup_transition
+        />
+        <div class="element__about">
+          <h2 class="element__description"></h2>
+          <button type="button" class="element__like"></button>
+        </div>
+      </div>
+    </template>
     <script src="./script/index.js"></script>
   </body>
 </html>
