@@ -19,8 +19,6 @@ function popupClose(popup) {
   popup.classList.remove('popup_open');
 };
   
-popupCloseButton.addEventListener('click', popupClose);
-  
 function closePopupByClickOverlay (event) {
   popup.forEach((popup) => {
   if (event.target == popup) {
@@ -51,6 +49,7 @@ function saveProfileInformation(event) {
   popupClose(popupElementProfile);
 };
 
+popupCloseButton.addEventListener('click', saveProfileInformation);
 buttonSavePopupChangesProfile.addEventListener('click', saveProfileInformation);
 
 /* Popup добавление фото-карточки */

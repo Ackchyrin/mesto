@@ -7,6 +7,7 @@
     background-image: url(../../../images/popup/close.svg);
     background-color: rgba(0, 0, 0, 0);
     border: none;
+    cursor: pointer;
 }
 
 .popup__close:hover{
