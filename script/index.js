@@ -49,7 +49,11 @@ function saveProfileInformation(event) {
   popupClose(popupElementProfile);
 };
 
-popupCloseButton.addEventListener('click', saveProfileInformation);
+function popupProfileClose(){
+  popupClose(popupElementProfile);
+}
+
+popupCloseButton.addEventListener('click', popupProfileClose);
 buttonSavePopupChangesProfile.addEventListener('click', saveProfileInformation);
 
 /* Popup добавление фото-карточки */
