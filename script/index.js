@@ -1,5 +1,4 @@
 /* закрытие и открытие popup */
-const popups = Array.from('.popup');
 const popupElementProfile = document.querySelector('.popup_edit-profile');
 const popupCloseButton = popupElementProfile.querySelector('.popup__close');
 const popupOpenButtonElementProfile = document.querySelector('.profile__info-button');
@@ -10,14 +9,14 @@ const employmentInput = popupElementProfile.querySelector('.popup__input_about')
 const buttonSavePopupChangesProfile = popupElementProfile.querySelector('.popup__save');
 const formEdit = document.forms.formprofile;
 
-/* Фуркция открытие и закрытия popup */
+/* Фукнция открытие и закрытия popup */
 
-function popupOpen(popups){
-  popups.classList.add('popup_open');
+function popupOpen(popup){
+  popup.classList.add('popup_open');
 }
   
-function popupClose(popups) {
-  popups.classList.remove('popup_open');
+function popupClose(popup) {
+  popup.classList.remove('popup_open');
 };
   
 /* function closePopupByClickOverlay (event) {
@@ -38,9 +37,10 @@ function setProfileInputs() {
 };
 
 function popupOpenProfileEdit(){
-popupOpen (popupElementProfile);
 setProfileInputs();
+popupOpen (popupElementProfile);
 }
+
 popupOpenButtonElementProfile.addEventListener('click', popupOpenProfileEdit);
 
 
