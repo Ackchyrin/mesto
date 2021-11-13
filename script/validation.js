@@ -54,7 +54,7 @@ function hideError(input, form, config) {
 }
 
 function hideErrors(parent) {
-    const inputs = parent.querySelectorAll('form__input');
+    const inputs = parent.querySelectorAll('popup__input');
     const form = parent.querySelector('form');
     inputs.forEach(input => {
         hideError(input, form, config);
