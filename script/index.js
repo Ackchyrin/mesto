@@ -1,4 +1,5 @@
 /* закрытие и открытие popup */
+const popups = Array.from(document.querySelectorAll('.popup'));
 const popupElementProfile = document.querySelector('.popup_edit-profile');
 const popupCloseButton = popupElementProfile.querySelector('.popup__close');
 const popupOpenButtonElementProfile = document.querySelector('.profile__info-button');
@@ -13,20 +14,31 @@ const formEdit = document.forms.formprofile;
 
 function popupOpen(popup){
   popup.classList.add('popup_open');
+  window.addEventListener('keydown', closeEscPopup);
 }
   
 function popupClose(popup) {
   popup.classList.remove('popup_open');
+  window.removeEventListener('keydown', closeEscPopup);
 };
   
-/* function closePopupByClickOverlay (event) {
-  popups.forEach((popups) => {
-  if (event.target == popups) {
-  popupClose(popups);
-  }
-});
+function closePopupByClickOverlay (event) {
+  popups.forEach((popup) => {
+    if (event.target == popup) {
+      popupClose(popup);
+    }
+  });
 }
-popupElementProfile.addEventListener('click', closePopupByClickOverlay); */
+
+popupElementProfile.addEventListener('click', closePopupByClickOverlay);
+
+function closeEscPopup(event) {
+  if (event.key == 'Escape') {
+      popups.filter((popup) => popup.classList.contains('popup_open')).forEach(popup => {
+        popupClose(popup);
+      });
+  };
+}
 
 /* Popup профиля сохранения */
 
@@ -39,6 +51,8 @@ function setProfileInputs() {
 function popupOpenProfileEdit(){
 setProfileInputs();
 popupOpen (popupElementProfile);
+buttonSavePopupChangesProfile.classList.remove('popup__button_disabled');
+buttonSavePopupChangesProfile.removeAttribute('disabled', false);
 }
 
 popupOpenButtonElementProfile.addEventListener('click', popupOpenProfileEdit);
@@ -77,6 +91,7 @@ function popupCloseAddImage() {
   popupClose(popupAddImage);
 }
 popupCloseButtonAddImage.addEventListener('click', popupCloseAddImage);
+popupAddImage.addEventListener('click', closePopupByClickOverlay);
 
 /* Добавление карточек, удаление, лайк, открытие карточек */
 
