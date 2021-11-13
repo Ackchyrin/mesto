@@ -99,10 +99,13 @@ const popupCreateCard = document.querySelector ('.popup_creat-card');
 const formImage = document.forms.popupimage ;
 const inputTitle = formImage.elements.title;
 const inputLink = formImage.elements.link;
-const elements = document.querySelector ('.elements');
+const cardsContainer = document.querySelector ('.elements');
 const cardTemplate = document.querySelector('#card-template').content;
 
-
+function appendCard(item) {
+  const element = createCard(item);
+  cardsContainer.prepend(element);
+}
 
 function createElementSubmit(event) {
   event.preventDefault();
@@ -112,11 +115,6 @@ function createElementSubmit(event) {
   appendCard(item);
   popupClose(popupAddImage);
   event.target.reset();
-}
-
-function appendCard(item) {
-  const element = createCard(item);
-  elements.prepend(element);
 }
 
 popupAddImage.addEventListener('submit',createElementSubmit);

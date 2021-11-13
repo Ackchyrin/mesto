@@ -19,7 +19,7 @@ function  enableValidation(validationConfig) {
 /* Работа валидации */
 
 function addFormListener(form, config) {
-    const inputs = Array.from(form.querySelectorAll('.popup__input'));
+    const inputs = Array.from(form.querySelectorAll(config.inputSelector));
     const button = form.querySelector(config.submitButtonSelector);
     form.addEventListener('submit', resetSubmit);
     form.addEventListener('input', () => SubmitButtonState(form, config, button));
