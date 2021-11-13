@@ -53,6 +53,14 @@ function hideError(input, form, config) {
     errorElement.textContent = ' ';
 }
 
+function hideErrors(parent) {
+    const inputs = parent.querySelectorAll('form__input');
+    const form = parent.querySelector('form');
+    inputs.forEach(input => {
+        hideError(input, form, config);
+    });
+}
+
 /*Работа кнопки submit */
 
 function SubmitButtonState(form, config, button){
