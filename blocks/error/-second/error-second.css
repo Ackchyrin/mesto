@@ -1,9 +1,0 @@
-.error-second{
-    top: 215px;
-}
-
-@media screen and (max-width: 500px) {
-    .error-second{
-        top: 225px;
-    }
-}
