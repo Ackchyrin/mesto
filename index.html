@@ -44,7 +44,7 @@
               <input name="name_popup" type="text" class="popup__input popup__input_name" id="name" minlength="2" maxlength="40" required/>
               <span id="name-error" class="error"></span>
               <input name="about_popup" type="text" class="popup__input popup__input_about" id="about" minlength="2" maxlength="200" required/>
-              <span id="about-error" class="error error-second"></span>
+              <span id="about-error" class="error error_second"></span>
               <button type="submit" class="popup__save ">Сохранить</button>
             </form>
         </div>
@@ -54,10 +54,10 @@
         <button type="button" class="popup__close popup__close-add"></button>
         <p class="popup__info">Новое место</p>
         <form class="popup__form" name="popupimage" method="GET" >
-          <input name="title_popup" id="title" type="text" class="popup__input popup__input_title" placeholder="Название" minlength="2" maxlength="30" required/>
+          <input name="title_popup" id="title" type="text" class="popup__input popup__input_title" id="card" placeholder="Название" minlength="2" maxlength="30" required/>
           <span id="title-error" class="error"></span>
-          <input name="link_popup" id="link" type="url" class="popup__input popup__input_link" placeholder="Ссылка на картинку"  required/>
-          <span id="link-error" class="error error-second"></span>
+          <input name="link_popup" id="link" type="url" class="popup__input popup__input_link" id="link" placeholder="Ссылка на картинку"  required/>
+          <span id="link-error" class="error error_second"></span>
           <button type="submit" class="popup__save">Сохранить</button>
         </form>
         </div>
