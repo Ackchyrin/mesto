@@ -1,4 +1,6 @@
 /* закрытие и открытие popup */
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
 const popups = Array.from(document.querySelectorAll('.popup'));
 const popupElementProfile = document.querySelector('.popup_edit-profile');
 const popupCloseButton = popupElementProfile.querySelector('.popup__close');
@@ -93,57 +95,33 @@ function popupCloseAddImage() {
 popupCloseButtonAddImage.addEventListener('click', popupCloseAddImage);
 popupAddImage.addEventListener('click', closePopupByClickOverlay);
 
-/* Добавление карточек, удаление, лайк, открытие карточек */
+/* Функиця добавление карточки*/
 
-const popupCreateCard = document.querySelector ('.popup_creat-card');
+const elements = document.querySelector ('.elements');
 const formImage = document.forms.popupimage ;
 const inputTitle = formImage.elements.title;
 const inputLink = formImage.elements.link;
-const cardsContainer = document.querySelector ('.elements');
+const viewImagePicture = document.querySelector('.open-image__picture');
+const viewCaption = document.querySelector('.open-image__caption');
 const cardTemplate = document.querySelector('#card-template').content;
 
-function appendCard(item) {
-  const element = createCard(item);
-  cardsContainer.prepend(element);
-}
-
-function createElementSubmit(event) {
+function addCardSubmit(event) {
   event.preventDefault();
-  const title = inputTitle.value;
   const link = inputLink.value;
-  const item = { title, link };
-  appendCard(item);
+  const title = inputTitle.value;
+  const card = { title, link };
+  const newCard = createCard(card);
+  prependCard(newCard);
   popupClose(popupAddImage);
   event.target.reset();
 }
 
-popupAddImage.addEventListener('submit',createElementSubmit);
+formImage.addEventListener('submit', addCardSubmit);
 
-function createCard(item){
-  const element = cardTemplate.querySelector('.element').cloneNode(true);
-  const cardImage = element.querySelector('.element__image');
-  cardImage.src = item.link;
-  cardImage.alt = item.title;
-  element.querySelector('.element__description').textContent = item.title;
-  element.querySelector('.element__delete').addEventListener('click', function() {
-    element.remove();
-  });
-  element.querySelector('.element__like').addEventListener('click', function(event) {
-    event.target.classList.toggle('element__like_pressed');
-  });
-  cardImage.addEventListener('click', function(event) {
-    openImage(item.link, item.title);
-});
-  return element;
-  }
-
-/* открытие фото-карточки */   
+/* закрытие фото-карточки */   
 
 const popupOpenImageFull = document.querySelector ('.popup_open-image');
-const popupOpenImage = document.querySelector ('.open-image');
-const viewImage = document.querySelector ('.open-image__picture');
-const viewCaption = document.querySelector ('.open-image__caption');
-const popupCloseButtonImageView = document.querySelector ('.popup__close-button_open-image');
+
 
 const closePopupOpenImage = function () {
   popupClose(popupOpenImageFull);
@@ -151,14 +129,8 @@ const closePopupOpenImage = function () {
 
 popupOpenImageFull.addEventListener('click', closePopupOpenImage);
 
-function openImage(link, title) {
-  viewImage.src = link;
-  viewImage.alt = title;
-  viewCaption.textContent = title;
-  popupOpen(popupOpenImageFull);
-}
-
 /* карточки по умолчанию */
+
 const initialCards = [
   {
     title: 'Архыз',
@@ -186,4 +158,38 @@ const initialCards = [
   }
 ];
 
-initialCards.forEach(appendCard);
+/*Валидация*/
+
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error_visible',
+  viewImagePicture,
+  viewCaption,
+  popupOpenImageFull,
+};
+
+function createCard(item) {
+  const card = new Card (config, item, cardTemplate, popupOpen, popupClose);
+  const cardElement = card.addCard();
+  console.log(cardElement);
+  return cardElement;
+}
+
+function prependCard(card) {
+  elements.prepend(card);
+}
+
+initialCards.forEach((item) => {
+  const card = createCard(item);
+  prependCard(card);
+});
+
+const formValidatorEdit = new FormValidator (config, formEdit);
+formValidatorEdit.enableValidation ();
+
+const formValidatorCard = new FormValidator(config, formImage);
+formValidatorCard.enableValidation();
