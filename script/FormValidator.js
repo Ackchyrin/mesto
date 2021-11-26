@@ -1,9 +1,9 @@
 class FormValidator {
     constructor (config, formName){
-        this._config = config ;
-        this._formName = formName ;
+        this._config = config;
+        this._formName = formName;
         this._inputList = [...formName.querySelectorAll(config.inputSelector)];
-        this._submitButton = formName.querySelector(config.submitButtonSelector) ;
+        this._submitButton = formName.querySelector(config.submitButtonSelector);
     }
 
 /* Запуск валидации получается */

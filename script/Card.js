@@ -1,4 +1,3 @@
-/* Добавление карточки, удаление, лайк, открытие карточек */
 class Card {
     constructor(config, item, template, popupOpen, popupClose) {
         this._item = item,
@@ -9,41 +8,41 @@ class Card {
         this._popupClose = popupClose
     }
 
-    addCard(){
+    addCard() {
         this._cardImage.src = this._item.link;
         this._cardImage.alt = this._item.title;
         this._view.querySelector('.element__description').textContent = this._item.title;
-        this._setEventListener();
-        return this._viem;
+        this._setEventListeners();
+        return this._view;
     }
 
-
-    _like(event){
-        event.target.classList.toggle('element__like_pressed');
-    }
-
-    _remove(){
-        this._viem.remove();
-    }
-
-    _handleOpenPopup(){
-        this._config.viewImagePicture.src = this._item.link;
-        this._config.viewImagePicture.alt = this._item.title;
-        this._config.viewCaption.textContent = this._item.title;
-        this._openPopup(this._config.popupOpenImageFull);
-    }
-
-    _setEventListener(){
+    _setEventListeners() {
         this._view.querySelector('.element__image').addEventListener('click', () => {
             this._handleOpenPopup();
         });
         this._view.querySelector('.element__delete').addEventListener('click', () => {
             this._remove();
         });
-        this._view.querySelector('.element__like').addEventListener('click', (event) => {
-            this._like(event);
+        this._view.querySelector('.element__like').addEventListener('click', (evt) => {
+            this._like(evt);
         });
     }
+
+    _like(evt) {
+        evt.target.classList.toggle('element__like_pressed');
+    }
+
+    _remove() {
+        this._view.remove();
+    }
+
+    _handleOpenPopup() {
+        this._config.viewImagePicture.src = this._item.link;
+        this._config.viewImagePicture.alt = this._item.title;
+        this._config.viewCaption.textContent = this._item.title;
+        this._popupOpen(this._config.popupOpenImageFull);
+    }
+
 }
 
 export default Card;

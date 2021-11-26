@@ -1,4 +1,3 @@
-/* закрытие и открытие popup */
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
 const popups = Array.from(document.querySelectorAll('.popup'));
@@ -11,6 +10,17 @@ const nameInput = popupElementProfile.querySelector('.popup__input_name');
 const employmentInput = popupElementProfile.querySelector('.popup__input_about');
 const buttonSavePopupChangesProfile = popupElementProfile.querySelector('.popup__save');
 const formEdit = document.forms.formprofile;
+const elements = document.querySelector ('.elements');
+const formImage = document.forms.popupimage;
+const inputTitle = formImage.elements.title;
+const inputLink = formImage.elements.link;
+const viewImagePicture = document.querySelector('.open-image__picture');
+const viewCaption = document.querySelector('.open-image__caption');
+const cardTemplate = document.querySelector('#card-template').content;
+const popupAddImage = document.querySelector('.popup_add-image');
+const buttonAddImage = document.querySelector('.profile__button');
+const popupCloseButtonAddImage = document.querySelector('.popup__close-add');
+const popupOpenImageFull = document.querySelector ('.popup_open-image');
 
 /* Фукнция открытие и закрытия popup */
 
@@ -79,10 +89,6 @@ popupCloseButton.addEventListener('click', popupProfileClose);
 
 /* Popup добавление фото-карточки */
 
-const popupAddImage = document.querySelector('.popup_add-image');
-const buttonAddImage = document.querySelector('.profile__button');
-const popupCloseButtonAddImage = document.querySelector('.popup__close-add');
-
 function popupOpenAddImage() {
   popupOpen(popupAddImage);
 };
@@ -96,14 +102,6 @@ popupCloseButtonAddImage.addEventListener('click', popupCloseAddImage);
 popupAddImage.addEventListener('click', closePopupByClickOverlay);
 
 /* Функиця добавление карточки*/
-
-const elements = document.querySelector ('.elements');
-const formImage = document.forms.popupimage ;
-const inputTitle = formImage.elements.title;
-const inputLink = formImage.elements.link;
-const viewImagePicture = document.querySelector('.open-image__picture');
-const viewCaption = document.querySelector('.open-image__caption');
-const cardTemplate = document.querySelector('#card-template').content;
 
 function addCardSubmit(event) {
   event.preventDefault();
@@ -119,9 +117,6 @@ function addCardSubmit(event) {
 formImage.addEventListener('submit', addCardSubmit);
 
 /* закрытие фото-карточки */   
-
-const popupOpenImageFull = document.querySelector ('.popup_open-image');
-
 
 const closePopupOpenImage = function () {
   popupClose(popupOpenImageFull);
@@ -179,13 +174,13 @@ function createCard(item) {
   return cardElement;
 }
 
-function prependCard(card) {
-  elements.prepend(card);
+function appendCard(card) {
+  elements.append(card);
 }
 
 initialCards.forEach((item) => {
   const card = createCard(item);
-  prependCard(card);
+  appendCard(card);
 });
 
 const formValidatorEdit = new FormValidator (config, formEdit);
