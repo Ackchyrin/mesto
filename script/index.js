@@ -63,7 +63,6 @@ function setProfileInputs() {
 function popupOpenProfileEdit(){
 setProfileInputs();
 popupOpen (popupElementProfile);
-buttonSavePopupChangesProfile.removeAttribute('disabled', false);
 }
 
 popupOpenButtonElementProfile.addEventListener('click', popupOpenProfileEdit);
