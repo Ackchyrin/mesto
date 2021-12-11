@@ -1,9 +1,9 @@
 class Card {
-    constructor(config, item, template, openViewPopup) {
+    constructor(config, item, cardTemplate, openViewPopup) {
         this._item = item,
-        this._config = config,
-        this._view = template.querySelector('.element').cloneNode(true),
+        this._view = cardTemplate.querySelector('.element').cloneNode(true),
         this._cardImage = this._view.querySelector('.element__image'),
+        this._cardDescription =  this._view.querySelector('.element__description'),
         this._openPopup = openViewPopup,
         this._handleCardClick = this._handleCardClick.bind(this);
     }
@@ -11,7 +11,7 @@ class Card {
     addCard() {
         this._cardImage.src = this._item.link;
         this._cardImage.alt = this._item.title;
-        this._view.querySelector('.element__description').textContent = this._item.title;
+        this._cardDescription.textContent = this._item.title;
         this._setEventListeners();
         return this._view;
     }
@@ -26,6 +26,7 @@ class Card {
 
     _remove() {
         this._view.remove();
+        this._element = null;
     }
 
     _setEventListeners() {

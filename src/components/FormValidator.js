@@ -2,8 +2,8 @@ class FormValidator {
     constructor (config, formName){
         this._config = config;
         this._formName = formName;
-        this._inputList = [...formName.querySelectorAll(config.inputSelector)];
-        this._submitButton = formName.querySelector(config.submitButtonSelector);
+        this._inputList = [...this._formName.querySelectorAll(this._config.inputSelector)];
+        this._submitButton = this._formName.querySelector(config.submitButtonSelector);
     }
 
 /* Запуск валидации получается */
@@ -16,7 +16,7 @@ enableValidation() {
 
 _setFormListener() {
     this._formName.addEventListener('submit', (evt) => this.resetValidation(evt));
-    this._formName.addEventListener('input', () => this.setSubmitButtonState());
+    this._formName.querySelector(this._config.inputSelector).addEventListener('input', () => this.setSubmitButtonState());
     this._inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => this._handleFieldValidation(inputElement));
     });
