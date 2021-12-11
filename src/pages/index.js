@@ -19,7 +19,7 @@ const config = {
 const popupWithImage = new PopupWithImage('.popup_open-image');
 
 const section = new Section({
-  items: initialCards, renderer: createCard
+  items: initialCards, renderer: (input) => section.addItem(createCard(input.title, input.link))
 },'.elements');
 
 /*Валидация*/
@@ -32,13 +32,10 @@ formValidatorCard.enableValidation();
 
 section.rendererItem();
 
-/*секция */
-
-function createCard(item) {
-  const card = new Card(config, item, cardTemplate, popupWithImage.open);
+function createCard(title, link) {
+  const card = new Card(config,{ title, link }, cardTemplate, popupWithImage.open);
   const cardElement = card.addCard();
-  section.addItem(cardElement);
-  return section;
+  return cardElement;
 }
 
 popupWithImage.setEventListeners();
@@ -61,13 +58,13 @@ popupOpenButtonElementProfile.addEventListener('click',openEditProfile);
 
 const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
   formSubmit: (input) => {
-    submitHandler(input);
+    submitHandlerProfile(input);
   }
 });
 
 editProfileSubmit.setEventListeners();
 
-function submitHandler(input) {
+function submitHandlerProfile(input) {
   userInfo.setUserInfo(input.name_popup, input.about_popup);
 }
 
@@ -82,8 +79,12 @@ buttonAddImage.addEventListener('click', openPopupAddCard);
 
 const addCardSubmit = new PopupWithForm(config, '.popup_add-image', {
   formSubmit: (input) => {
-    createCard({ title: input.title_popup, link: input.link_popup });
+    submitHandlerCard(input);
   }
 });
 
 addCardSubmit.setEventListeners();
+
+function submitHandlerCard(input) {
+  section.addItem(createCard(input.title_popup, input.link_popup));
+}
