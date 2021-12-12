@@ -39,9 +39,9 @@
           <button type="button" class="popup__close"></button>
           <p class="popup__info">Редактировать профиль</p>
           <form class="popup__form" name="formprofile" method="POST" action="/">
-              <input name="name_popup" type="text" class="popup__input popup__input_name" id="name" minlength="2" maxlength="40" placeholder="Имя профиля" required/>
+              <input name="namepopup" type="text" class="popup__input popup__input_name" id="name" minlength="2" maxlength="40" placeholder="Имя профиля" required/>
               <span id="name-error" class="error"></span>
-              <input name="about_popup" type="text" class="popup__input popup__input_about" id="about" minlength="2" maxlength="200" placeholder="О профиле" required/>
+              <input name="aboutpopup" type="text" class="popup__input popup__input_about" id="about" minlength="2" maxlength="200" placeholder="О профиле" required/>
               <span id="about-error" class="error error_second"></span>
               <button type="submit" class="popup__save">Сохранить</button>
             </form>
@@ -52,9 +52,9 @@
         <button type="button" class="popup__close"></button>
         <p class="popup__info">Новое место</p>
         <form class="popup__form" name="popupimage" method="GET" action="/">
-          <input name="title_popup" id="title" type="text" class="popup__input popup__input_title" placeholder="Название" minlength="2" maxlength="30" required/>
+          <input name="titlepopup" id="title" type="text" class="popup__input popup__input_title" placeholder="Название" minlength="2" maxlength="30" required/>
           <span id="title-error" class="error"></span>
-          <input name="link_popup" id="link" type="url" class="popup__input popup__input_link" placeholder="Ссылка на картинку"  required/>
+          <input name="linkpopup" id="link" type="url" class="popup__input popup__input_link" placeholder="Ссылка на картинку"  required/>
           <span id="link-error" class="error error_second"></span>
           <button type="submit" class="popup__save">Добавить</button>
         </form>

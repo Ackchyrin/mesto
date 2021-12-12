@@ -1,5 +1,5 @@
 class Card {
-    constructor(config, item, cardTemplate, openViewPopup) {
+    constructor(item, cardTemplate, openViewPopup) {
         this._item = item,
         this._view = cardTemplate.querySelector('.element').cloneNode(true),
         this._cardImage = this._view.querySelector('.element__image'),

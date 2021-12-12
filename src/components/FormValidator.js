@@ -16,9 +16,9 @@ enableValidation() {
 
 _setFormListener() {
     this._formName.addEventListener('submit', (evt) => this.resetValidation(evt));
-    this._formName.querySelector(this._config.inputSelector).addEventListener('input', () => this.setSubmitButtonState());
     this._inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => this._handleFieldValidation(inputElement));
+        inputElement.addEventListener('input', () => this.setSubmitButtonState());
     });
     this.setSubmitButtonState();
 }

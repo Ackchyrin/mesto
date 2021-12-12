@@ -31,7 +31,6 @@ class PopupWithForm extends Popup{
         this._inputList.forEach((input) => {
             dataInputsValue[input.name] = input.value;
         });
-        this.close();
         return dataInputsValue;
     }
 
