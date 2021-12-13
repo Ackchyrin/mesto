@@ -33,7 +33,7 @@ formValidatorCard.enableValidation();
 section.rendererItem();
 
 function createCard(title, link) {
-  const card = new Card(config,{ title, link }, cardTemplate, popupWithImage.open);
+  const card = new Card({ title, link }, cardTemplate, popupWithImage.open);
   const cardElement = card.addCard();
   return cardElement;
 }
@@ -59,13 +59,14 @@ popupOpenButtonElementProfile.addEventListener('click',openEditProfile);
 const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
   formSubmit: (input) => {
     submitHandlerProfile(input);
+    editProfileSubmit.close()
   }
 });
 
 editProfileSubmit.setEventListeners();
 
 function submitHandlerProfile(input) {
-  userInfo.setUserInfo(input.name_popup, input.about_popup);
+  userInfo.setUserInfo(input.namepopup, input.aboutpopup);
 }
 
 /*Popup добавление фото-карточек */
@@ -80,11 +81,12 @@ buttonAddImage.addEventListener('click', openPopupAddCard);
 const addCardSubmit = new PopupWithForm(config, '.popup_add-image', {
   formSubmit: (input) => {
     submitHandlerCard(input);
+    addCardSubmit.close()
   }
 });
 
 addCardSubmit.setEventListeners();
 
 function submitHandlerCard(input) {
-  section.addItem(createCard(input.title_popup, input.link_popup));
+  section.addItem(createCard(input.titlepopup, input.linkpopup));
 }
