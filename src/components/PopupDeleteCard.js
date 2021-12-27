@@ -5,7 +5,7 @@ class PopupDeleteCard extends Popup {
         super(popupSelector),
             this._confirmForm = document.forms.popupdelete,
             this._handleConfirm = handleConfirm,
-            this._submitButton = document.querySelector('.popup__button_delete'),
+            this._submitButton = document.querySelector('.popup__button-delete'),
             this._data = null
     }
 
