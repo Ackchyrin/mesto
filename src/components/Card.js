@@ -48,9 +48,9 @@ class Card {
 
     _updateLikes() {
         if (!this.isLiked()) {
-            this._elementLikeBtn.classList.remove('element__btn_like_active');
+            this._elementLikeBtn.classList.remove('element__like_pressed');
         } else {
-            this._elementLikeBtn.classList.add('element__like');
+            this._elementLikeBtn.classList.add('element__like_pressed');
         }
     }
 
