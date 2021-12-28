@@ -1,149 +1,83 @@
 class Api {
-  constructor({ address, token }) {
+  constructor(address, headers ) {
       this.address = address,
-      this.token = token
+      this._headers = headers
+  }
+
+  _checkResponse(){
+    return (res => res.ok ? res.json() : Promise.reject(new Error(`Ошибка: ${res.status}`)));
   }
 
   getInitialCards() {
       return fetch(`${this.address}/cards`, {
-          headers: {
-              authorization: this.token
-          }
+        headers: this._headers
       })
-          .then(res => {
-              if (res.ok) {
-                  return res.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${res.status}`);
-              }
-          });
+          .then (this._checkResponse());
   }
 
   aboutUser() {
       return fetch(`${this.address}/users/me`, {
-          headers: {
-              authorization: this.token
-          }
+        headers: this._headers
       })
-          .then(result => {
-              if (result.ok) {
-                  return result.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${result.status}`);
-              }
-          })
+          .then (this._checkResponse());
   }
 
   editProfile(data) {
       return fetch(`${this.address}/users/me`, {
           method: 'PATCH',
-          headers: {
-              authorization: this.token,
-              'Content-Type': 'application/json'
-          },
+          headers: this._headers,
           body: JSON.stringify({
               name: data.name,
               about: data.about
           })
       })
-          .then(result => {
-              if (result.ok) {
-                  return result.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${result.status}`);
-              }
-          })
+          .then (this._checkResponse());
   }
 
   addNewCards({ name, link }) {
     return fetch(`${this.address}/cards`, {
         method: 'POST',
-        headers: {
-            authorization: this.token,
-            'Content-Type': 'application/json'
-        },
+        headers: this._headers,
         body: JSON.stringify({
             name: name,
             link: link
         })
     })
-        .then(result => {
-            if (result.ok) {
-                return result.json();
-            } else {
-                return Promise.reject(`Ошибка: ${result.status}`);
-            }
-        })
+        .then (this._checkResponse());
 }
 
   deleteCard(dataId) {
       return fetch(`${this.address}/cards/${dataId}`, {
           method: 'DELETE',
-          headers: {
-              'authorization': this.token,
-              'Content-Type': 'application/json'
-          }
+          headers: this._headers
       })
-          .then(result => {
-              if (result.ok) {
-                  return result.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${result.status}`);
-              }
-          })
+          .then (this._checkResponse());
   }
 
   addlike(dataId) {
       return fetch(`${this.address}/cards/${dataId}/likes`, {
           method: 'PUT',
-          headers: {
-              'authorization': this.token,
-              'Content-Type': 'application/json'
-          }
+          headers: this._headers
       })
-          .then(result => {
-              if (result.ok) {
-                  return result.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${result.status}`);
-              }
-          })
+          .then (this._checkResponse());
   }
 
   removeLike(dataId) {
       return fetch(`${this.address}/cards/${dataId}/likes`, {
           method: 'DELETE',
-          headers: {
-              'authorization': this.token,
-              'Content-Type': 'application/json'
-          }
+          headers: this._headers
       })
-          .then(result => {
-              if (result.ok) {
-                  return result.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${result.status}`);
-              }
-          })
+          .then (this._checkResponse());
   }
   updateAvatar(data) {
       return fetch(`${this.address}/users/me/avatar`, {
           method: 'PATCH',
-          headers: {
-              'authorization': this.token,
-              'Content-Type': 'application/json'
-          },
+          headers: this._headers,
           body: JSON.stringify({
               avatar: data.link
           })
       })
-          .then(result => {
-              if (result.ok) {
-                  return result.json();
-              } else {
-                  return Promise.reject(`Ошибка: ${result.status}`);
-              }
-          })
+          .then (this._checkResponse());
   }
 }
 

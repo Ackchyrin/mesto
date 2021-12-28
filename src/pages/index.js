@@ -5,36 +5,23 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
-import AvatarEdit from '../components/AvatarEdit.js';
 import PopupWithConfirmation from '../components/PopupDeleteCard.js';
-import{ popupOpenButtonElementProfile, formEdit, nameInput, aboutInput,  formImage, templateCard, buttonAddImage,  popupEditAvatar, formEditAvatar} from '../utils/constant.js'
+import{ popupOpenButtonElementProfile, formEdit, nameInput, aboutInput,  formImage, templateCard, buttonAddImage,  popupEditAvatar, formEditAvatar, config} from '../utils/constant.js'
 import './index.css';
 
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error_visible',
-  save: 'Сохранить',
-  create: 'Создать',
-  preservation: 'Сохранение',
-  creation: 'Создание',
-};
-
-const api = new Api({
-  address: 'https://nomoreparties.co/v1/cohort-33',
-  token: '22fdfdf8-8495-4607-a646-eca1821ff286'
+const api = new Api(
+  'https://nomoreparties.co/v1/cohort-33',
+  {authorization: '22fdfdf8-8495-4607-a646-eca1821ff286',
+  'Content-Type': 'application/json'
 });
 
 Promise.all([api.aboutUser(), api.getInitialCards()])
   .then(([user, cards]) =>{
     userInfo.setUserInfo(user);
-    avatarEdit.setAvatar(user.avatar);
+    userInfo.setAvatar(user.avatar);
     section.rendererItem(cards, user._id);
   })
+  .catch(err => console.log(err));
 
   const popupWithImage = new PopupWithImage('.popup_open-image');
 
@@ -47,8 +34,7 @@ popupWithDelete.setEventListeners();
 
   /*UserInfo отражает имя и дополнение о профиле */
 
-const userInfo = new UserInfo('.profile__info-name', '.profile__info-about');
-const avatarEdit = new AvatarEdit('.profile__avatar');
+const userInfo = new UserInfo('.profile__info-name', '.profile__info-about', '.profile__avatar');
 
 /*Валидация*/
 
@@ -68,7 +54,7 @@ popupWithImage.setEventListeners();
 function openEditProfile(){
   editProfileSubmit.open();
   formValidatorEdit.resetValidation();
-  formValidatorEdit.addSubmitButton();
+  formValidatorEdit.activateButton();
   const getUserInfo = userInfo.getUserInfo();
   nameInput.value = getUserInfo.name;
   aboutInput.value = getUserInfo.about;
@@ -78,16 +64,12 @@ popupOpenButtonElementProfile.addEventListener('click',openEditProfile);
 
 const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
   formSubmit: (input) => {
-    submitHandlerProfile(input);
     api.editProfile({
-      name: userInfo.getUserInfo().name,
-      about:userInfo.getUserInfo().about
+      name:  input.name,
+      about: input.about
     })
-    .then(result => userInfo.setUserInfo(result))
+    .then(result => userInfo.setUserInfo(result), editProfileSubmit.close(), submitHandlerProfile(input))
     .catch(err => console.log(err))
-    .finally(() =>{
-      editProfileSubmit.close();
-    })
   }
 });
 
@@ -102,7 +84,7 @@ function submitHandlerProfile(input) {
 
 function openPopupAddCard() {
   addCardSubmit.open();
-  /* formValidatorCard.resetValidation(); */
+  formValidatorCard.resetValidation();
 }
 
 buttonAddImage.addEventListener('click', openPopupAddCard);
@@ -151,7 +133,7 @@ const editAvatarSubmit = new PopupWithForm (config, '.popup_avatar', {
 editAvatarSubmit.setEventListeners();
 
 function submitHandlerAvatar(input) {
-  avatarEdit.setAvatar(input.avatar);
+  userInfo.setAvatar(input.avatar);
 }
 
 function openPopupEditAvatar() {
@@ -166,11 +148,8 @@ popupEditAvatar.addEventListener('click', openPopupEditAvatar);
 function deleteCardApi(data) {
   const { id, cleanup } = data;
   api.deleteCard(id)
-      .then(() => cleanup())
+      .then(() => cleanup(), popupWithDelete.close())
       .catch(err => console.log(err))
-      .finally(() => {
-          popupWithDelete.close()
-      })
 }
 
 function openPopupDelete(data) {

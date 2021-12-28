@@ -42,9 +42,9 @@
           <button type="button" class="popup__close"></button>
           <p class="popup__info">Редактировать профиль</p>
           <form class="popup__form" name="formprofile" method="POST" action="/">
-              <input name="namepopup" type="text" class="popup__input popup__input_name" id="name" minlength="2" maxlength="40" placeholder="Имя профиля" required/>
+              <input name="name" type="text" class="popup__input popup__input_name" id="name" minlength="2" maxlength="40" placeholder="Имя профиля" required/>
               <span id="name-error" class="error"></span>
-              <input name="aboutpopup" type="text" class="popup__input popup__input_about" id="about" minlength="2" maxlength="200" placeholder="О профиле" required/>
+              <input name="about" type="text" class="popup__input popup__input_about" id="about" minlength="2" maxlength="200" placeholder="О профиле" required/>
               <span id="about-error" class="error error_second"></span>
               <button type="submit" class="popup__save close-edit">Сохранить</button>
             </form>
@@ -86,7 +86,7 @@
       <button type="button" class="popup__close"></button>
       <p class="popup__info">Удалить карточку ?</p>
       <form class="popup__form" name="popupdelete" method="GET" action="/">
-        <button type="submit" class="popup__save popup__button-delete">Удалить</button>
+        <button type="submit" class="popup__save">Удалить</button>
       </form>
       </div>
     </div>

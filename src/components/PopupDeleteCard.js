@@ -3,10 +3,10 @@ import Popup from "./Popup";
 class PopupDeleteCard extends Popup {
     constructor(popupSelector, handleConfirm) {
         super(popupSelector),
-            this._confirmForm = document.forms.popupdelete,
-            this._handleConfirm = handleConfirm,
-            this._submitButton = document.querySelector('.popup__button-delete'),
-            this._data = null
+        this._form = document.forms.popupdelete,
+        this._handleConfirm = handleConfirm,
+        this._submitButton = document.querySelector('.popup__save'),
+        this._data = null
     }
 
     _handleSubmit = (evt) => {
@@ -36,7 +36,7 @@ class PopupDeleteCard extends Popup {
 
     setEventListeners() {
         super.setEventListeners();
-        this._confirmForm.addEventListener('submit', this._handleSubmit);
+        this._form.addEventListener('submit', this._handleSubmit);
     }
 }
 

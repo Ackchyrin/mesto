@@ -8,9 +8,6 @@ class PopupWithForm extends Popup{
         this._form = this._popup.querySelector(this._config.formSelector),
         this._inputList = [...this._form.querySelectorAll(this._config.inputSelector)],
         this._submitForm = this._submitForm.bind(this),
-        this._submitButtonEdit = document.querySelector('.close-edit'),
-        this._submitButtonAvatar = document.querySelector('.close-avatar'),
-        this._submitButtonCard = document.querySelector('.close-card'),
         this._handleRetreive = retreiveData
     }
 
@@ -25,15 +22,15 @@ class PopupWithForm extends Popup{
     }
 
     _setSave() {
-        this._submitButtonEdit.textContent = this._config.preservation;
-        this._submitButtonAvatar.textContent = this._config.preservation;
-        this._submitButtonCard.textContent = this._config.creation;
+        this._submitForm.textContent = this._config.preservation;
+        this._submitForm.textContent = this._config.preservation;
+        this._submitForm.textContent = this._config.creation;
     }
 
     _resetSave() {
-        this._submitButtonEdit.textContent = this._config.save;
-        this._submitButtonAvatar.textContent = this._config.save;
-        this._submitButtonCard.textContent = this._config.create;
+        this._submitForm.textContent = this._config.save;
+        this._submitForm.textContent = this._config.save;
+        this._submitForm.textContent = this._config.create;
     }
 
     _getInputValues() {
