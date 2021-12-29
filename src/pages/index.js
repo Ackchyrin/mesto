@@ -72,9 +72,11 @@ const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
     .then(result => {
     userInfo.setUserInfo(result)
     editProfileSubmit.close()
-    editProfileSubmit.renderLoading(false)
   })
     .catch(err => console.log(err))
+    .finally(() =>{
+    editProfileSubmit.renderLoading(false)
+    })
   }
 });
 
@@ -99,9 +101,11 @@ const addCardSubmit = new PopupWithForm (config, '.popup_add-image', {
     .then(result => {
     submitHandlerCard(result, userInfo.ID)
     addCardSubmit.close()
-    addCardSubmit.renderLoading(false)
   })
     .catch(err => console.log(err))
+    .finally(() =>{
+    addCardSubmit.renderLoading(false)
+    })
   }
 });
 
@@ -128,9 +132,11 @@ const editAvatarSubmit = new PopupWithForm (config, '.popup_avatar', {
     .then(result => {
     submitHandlerAvatar(result)
     editAvatarSubmit.close()
-    editAvatarSubmit.renderLoading(false)
   })
     .catch(err => console.log(err))
+    .finally(() =>{
+    editAvatarSubmit.renderLoading(false)
+    })
   }
 })
 

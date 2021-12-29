@@ -12,20 +12,16 @@ class PopupWithForm extends Popup{
         this._handleRetreive = retreiveData
     }
 
-    open = () =>{
-        super.open();
-    }
-
     close(){
         super.close();
         this._form.reset();
     }
 
-    renderLoading(flag) {
+    renderLoading(flag, buttonText='Сохранить') {
         if (flag) {
           this._submitButton.textContent = 'Сохранение...'
         } else {
-          this._submitButton.textContent = 'Сохранить'
+          this._submitButton.textContent = buttonText
         }
       }
 
