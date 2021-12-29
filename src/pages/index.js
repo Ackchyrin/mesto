@@ -64,6 +64,7 @@ popupOpenButtonElementProfile.addEventListener('click',openEditProfile);
 
 const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
   formSubmit: (input) => {
+    editProfileSubmit.renderLoading(true);
     api.editProfile({
       name:  input.name,
       about: input.about
@@ -71,6 +72,7 @@ const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
     .then(result => {
     userInfo.setUserInfo(result)
     editProfileSubmit.close()
+    editProfileSubmit.renderLoading(false)
   })
     .catch(err => console.log(err))
   }
@@ -89,6 +91,7 @@ buttonAddImage.addEventListener('click', openPopupAddCard);
 
 const addCardSubmit = new PopupWithForm (config, '.popup_add-image', {
   formSubmit: (input) => {
+    addCardSubmit.renderLoading(true);
     api.addNewCards({
       name: input.title,
       link: input.link
@@ -96,6 +99,7 @@ const addCardSubmit = new PopupWithForm (config, '.popup_add-image', {
     .then(result => {
     submitHandlerCard(result, userInfo.ID)
     addCardSubmit.close()
+    addCardSubmit.renderLoading(false)
   })
     .catch(err => console.log(err))
   }
@@ -117,12 +121,14 @@ function createCard(card, userID) {
 
 const editAvatarSubmit = new PopupWithForm (config, '.popup_avatar', {
   formSubmit: (input) => {
+    editAvatarSubmit.renderLoading(true);
     api.updateAvatar({
       link: input.avatar
     })
     .then(result => {
     submitHandlerAvatar(result)
     editAvatarSubmit.close()
+    editAvatarSubmit.renderLoading(false)
   })
     .catch(err => console.log(err))
   }
