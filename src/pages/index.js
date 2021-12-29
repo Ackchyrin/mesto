@@ -68,8 +68,10 @@ const editProfileSubmit = new PopupWithForm(config, '.popup_edit-profile', {
       name:  input.name,
       about: input.about
     })
-    .then(result => userInfo.setUserInfo(result),
-    editProfileSubmit.close())
+    .then(result => {
+    userInfo.setUserInfo(result)
+    editProfileSubmit.close()
+  })
     .catch(err => console.log(err))
   }
 });
@@ -91,8 +93,10 @@ const addCardSubmit = new PopupWithForm (config, '.popup_add-image', {
       name: input.title,
       link: input.link
     })
-    .then(result => submitHandlerCard(result, userInfo.ID),
-    addCardSubmit.close())
+    .then(result => {
+    submitHandlerCard(result, userInfo.ID)
+    addCardSubmit.close()
+  })
     .catch(err => console.log(err))
   }
 });
@@ -116,8 +120,10 @@ const editAvatarSubmit = new PopupWithForm (config, '.popup_avatar', {
     api.updateAvatar({
       link: input.avatar
     })
-    .then(result => submitHandlerAvatar(result),
-    editAvatarSubmit.close())
+    .then(result => {
+    submitHandlerAvatar(result)
+    editAvatarSubmit.close()
+  })
     .catch(err => console.log(err))
   }
 })
@@ -140,8 +146,10 @@ popupEditAvatar.addEventListener('click', openPopupEditAvatar);
 function deleteCardApi(data) {
   const { id, cleanup } = data;
   api.deleteCard(id)
-      .then(result => cleanup(result), 
-      popupWithDelete.close())
+      .then(result => {
+      cleanup(result) 
+      popupWithDelete.close()
+    })
       .catch(err => console.log(err))
 }
 
